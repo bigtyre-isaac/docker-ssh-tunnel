@@ -2,6 +2,12 @@ This docker container is designed to setup and maintain a persistent SSH tunnel 
 
 It relies on a private key for authentication, which should be provided as a user secret called user_ssh_key. Configure the ssh user, destination server and destination port via environment variables. See the docker-compose file below for an example.
 
+SSH_SERVER = the destination server ip/dns address.
+SSH_USER = the user on the destination server that you are connecting as. This user must have the key specified in the secrets in their authorized keys.
+SSH_TUNNEL_PORT = the destination port you are connecting TO. The container will always connect FROM port 10000 TO the port specified by SSH_TUNNEL_PORT. Port 10000 is the port that should be exposed to other containers, as per the example below.
+SSH_TUNNEL_HOST = the destination to use on the destination server. This can generally be left at its default value of 127.0.0.1
+
+
 ```
 services:
   ssh-tunnel:
